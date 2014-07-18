@@ -1,0 +1,16 @@
+---
+
+- name: Reset PHP OPcache through CLI
+  command: "php -r \"{{ php_opcache_reset_code }}\""
+  when: php_opcache_reset_through_cli
+  register: php_opcache_reset_cli
+  changed_when: php_opcache_reset_cli.stdout == php_opcache_reset_message_success
+  failed_when: php_opcache_reset_cli.stdout == php_opcache_reset_message_not_installed
+
+- name: Reset PHP OPcache through FPM
+  command: "php_fpm_cli -r \"{{ php_opcache_reset_code }}\" -connect {{ item }}"
+  with_items: php_opcache_reset_sockets
+  when: php_opcache_reset_through_fpm
+  register: php_opcache_reset_fpm
+  changed_when: php_opcache_reset_fpm.stdout == php_opcache_reset_message_success
+  failed_when: php_opcache_reset_fpm.stdout == php_opcache_reset_message_not_installed

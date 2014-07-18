@@ -1,0 +1,23 @@
+---
+galaxy_info:
+  author: "Jasper N. Brouwer"
+  description: Clear the PHP OPcache through CLI and FPM.
+  company: Future500
+  license: LGPLv3
+  min_ansible_version: 1.4
+  platforms:
+    - { name: Amazon, versions: [ all ]}
+    - { name: Debian, versions: [ all ]}
+    - { name: EL, versions: [ all ]}
+    - { name: Fedora, versions: [ all ]}
+    - { name: FreeBSD, versions: [ all ]}
+    - { name: Amazon, versions: [ all ]}
+    - { name: GenericBSD, versions: [ all ]}
+    - { name: GenericLinux, versions: [ all ]}
+    - { name: GenericUNIX, versions: [ all ]}
+    - { name: opensuse, versions: [ all ]}
+    - { name: SLES, versions: [ all ]}
+    - { name: Ubuntu, versions: [ all ]}
+  categories:
+    - web
+  dependencies: []

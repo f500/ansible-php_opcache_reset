@@ -1,16 +1,8 @@
 ---
 
-- name: Reset PHP OPcache through CLI
-  command: "php -r \"{{ php_opcache_reset_code }}\""
-  when: php_opcache_reset_through_cli
-  register: php_opcache_reset_cli
-  changed_when: php_opcache_reset_cli.stdout == php_opcache_reset_message_success
-  failed_when: php_opcache_reset_cli.stdout == php_opcache_reset_message_not_installed
-
-- name: Reset PHP OPcache through FPM
-  command: "php_fpm_cli -r \"{{ php_opcache_reset_code }}\" -connect {{ item }}"
+- name: Reset PHP OPcache
+  command: "{{ php_opcache_reset_binary }} -connect {{ item }} -r \"{{ php_opcache_reset_code }}\""
   with_items: php_opcache_reset_sockets
-  when: php_opcache_reset_through_fpm
-  register: php_opcache_reset_fpm
-  changed_when: php_opcache_reset_fpm.stdout == php_opcache_reset_message_success
-  failed_when: php_opcache_reset_fpm.stdout == php_opcache_reset_message_not_installed
+  register: php_opcache_reset_result
+  changed_when: php_opcache_reset_result.rc == 0 and php_opcache_reset_result.stdout == php_opcache_reset_message_success
+  failed_when: php_opcache_reset_result.rc != 0 or (php_opcache_reset_result.stdout != php_opcache_reset_message_success and php_opcache_reset_result.stdout != php_opcache_reset_message_disabled)

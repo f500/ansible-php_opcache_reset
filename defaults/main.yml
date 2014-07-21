@@ -1,15 +1,10 @@
 ---
 
-php_opcache_reset_through_cli: true
-php_opcache_reset_through_fpm: true
-
-php_opcache_reset_php_bin: php
-php_opcache_reset_php_fpm_cli_bin: php-fpm-cli
+php_opcache_reset_binary: php-fpm-cli
 
 php_opcache_reset_sockets: [ /var/run/php5-fpm.sock ]
 
 php_opcache_reset_message_success: OPCACHE_RESET_SUCCESSFULLY
 php_opcache_reset_message_disabled: OPCACHE_DISABLED
-php_opcache_reset_message_not_installed: OPCACHE_NOT_INSTALLED
 
-php_opcache_reset_code: "echo (function_exists('opcache_reset') ? (opcache_reset() ? '{{ php_opcache_reset_message_success }}' : '{{ php_opcache_reset_message_disabled }}') : '{{ php_opcache_reset_message_not_installed }}');"
+php_opcache_reset_code: "echo (opcache_reset() ? '{{ php_opcache_reset_message_success }}' : '{{ php_opcache_reset_message_disabled }}');"

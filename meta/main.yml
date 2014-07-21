@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: "Jasper N. Brouwer, Ramon de la Fuente"
-  description: Clear the PHP OPcache through CLI and FPM.
+  description: Reset the PHP OPcache that lives in PHP FPM's memory.
   company: Future500
   license: LGPLv3
   min_ansible_version: 1.4

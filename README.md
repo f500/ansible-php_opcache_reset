@@ -17,7 +17,7 @@ We require that you have PHP FPM up and running.
 
 The PHP FPM socket(s) must be readable and writable by the ansible user that will run this role.
 A commen way to ensure this is to add the ansible user to the group set by the PHP FPM directive `listen.group`,
-and use `0660` permissions on the socket (by the PHP FPM directive `listen.mode`).
+and use `0660` permissions on the socket (set by the PHP FPM directive `listen.mode`).
 
 
 Role Variables
@@ -76,6 +76,7 @@ Author Information
 ------------------
 
 Jasper N. Brouwer, jasper@future500.nl
+
 Ramon de la Fuente, ramon@future500.nl
 
 
